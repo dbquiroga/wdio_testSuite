@@ -7,11 +7,12 @@ PASO  A PASO PARA EJECUTAR WDIO
 1. Necesitas tener **Node.js** instalado en el sistema (versión *12.16.1* en adelante).
 2.Asegurarte de estar parada en la carpeta del repo
 3. Ejecutar: `npm init wdio .`
-4. Se desplegará el WDIO CLI Wizard, epodes poner las siguientes opciones:
+4. Se desplegará el WDIO CLI Wizard, podes poner las siguientes opciones:
 
 | Pregunta                                                 | Respuesta                                   |
 | -------------------------------------------------------- | ------------------------------------------- |
-| Where is your automation backend located?                | On my local machine                         |
+| What type of testing would you like to do?                | E2E Testing - of Web or Mobile Applications |
+| Where is your automation backend located?                 | On my local machine                         |
 | Which framework do you want to use?                      | jasmine                                     |
 | Do you want to use a compiler?                           | No!                                         |
 | Where are your test specs located?                       | ./specs/\*\*/\*.js                          |
@@ -22,7 +23,7 @@ PASO  A PASO PARA EJECUTAR WDIO
 | What is the base url?                                    |                                             |
 | Do you want me to run `npm install`                      | Yes                                         |
 
-5.  Se va a crear un archivo wdio.conf.js* ahi es donde estan todas las configuraciones de como corres los test
+5. Se va a crear un archivo wdio.conf.js* ahi es donde estan todas las configuraciones de como corres los test
 6. Para correr todos los test
 ```
 npx wdio run ./wdio.conf.js
