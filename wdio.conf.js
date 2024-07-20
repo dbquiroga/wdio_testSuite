@@ -1,3 +1,10 @@
+const path = require('path');
+const fs = require('fs');
+const utils = require( './pages/utils' );
+
+// path del directorio en variable global
+global.downloadDir = path.join(__dirname, 'tempDownload');
+
 export const config = {
     //
     // ====================
@@ -50,7 +57,14 @@ export const config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+            prefs: {
+                'directory_upgrade': true,
+                'prompt_for_download': false,
+                'download.default_directory': downloadDir,
+            }
+        }
     }],
 
     //
@@ -151,8 +165,15 @@ export const config = {
      * @param {object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+    onPrepare: function (config, capabilities) {
+        // asegurar que el directorio de descargas exista
+        if (!fs.existsSync(downloadDir)){
+            // si no existe se crea
+            fs.mkdirSync(downloadDir);
+        }
+    },
+
+
     /**
      * Gets executed before a worker process is spawned and can be used to initialize specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -276,8 +297,12 @@ export const config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
+
+    onComplete: function(exitCode, config, capabilities, results) {
+        utils.rmdir(downloadDir);
+    },
+
+
     /**
     * Gets executed when a refresh happens.
     * @param {string} oldSessionId session ID of the old session
