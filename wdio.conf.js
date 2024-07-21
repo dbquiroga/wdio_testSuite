@@ -5,7 +5,7 @@ const utils = require( './pages/utils' );
 // path del directorio en variable global
 global.downloadDir = path.join(__dirname, 'tempDownload');
 
-export const config = {
+exports.config = {
     //
     // ====================
     // Runner Configuration
@@ -28,7 +28,7 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        // ToDo: define location for spec files here
+        'specs/*.spec.js',
     ],
     // Patterns to exclude.
     exclude: [
@@ -67,14 +67,12 @@ export const config = {
         }
     }],
 
-    //
+
     // ===================
     // Test Configurations
-    // ===================
     // Define all options that are relevant for the WebdriverIO instance here
     //
-    // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'error', // trace | debug | info | warn | error | silent
     //
     // Set specific log levels per logger
     // loggers:

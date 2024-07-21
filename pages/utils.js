@@ -21,4 +21,4 @@ class Utils {
   }
 
 }
-export const utils = new Utils();
+module.exports = new Utils();
